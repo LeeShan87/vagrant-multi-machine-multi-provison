@@ -1,0 +1,24 @@
+- name: Load config.yml.
+  include_vars:
+    file: /vagrant/config.yaml
+    name: config
+
+- name: Create {{ config.ssh_user }} user
+  user:
+    name: '{{ config.ssh_user }}'
+  become: true
+
+- name: Add user "{{ config.ssh_user }}" to sudo
+  lineinfile:
+    path: /etc/sudoers.d/{{ config.ssh_user }}
+    line: '{{ config.ssh_user }} ALL=(ALL) NOPASSWD: ALL'
+    state: present
+    mode: 0440
+    create: yes
+  become: true
+
+- name: Set {{ config.ssh_user }} ssh ssh_key
+  authorized_key:
+    user: '{{ config.ssh_user }}'
+    key: '{{ config.ssh_key }}'
+  become: true

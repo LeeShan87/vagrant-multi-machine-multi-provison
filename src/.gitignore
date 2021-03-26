@@ -1,0 +1,6 @@
+.vagrant
+.project
+repos/*
+www/*
+tmp/*
+config.yaml

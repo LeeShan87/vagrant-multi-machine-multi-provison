@@ -1,0 +1,17 @@
+- name: Install common packages
+  package:
+    state: present
+    name:
+      - htop
+      - strace
+      - mc
+      - iotop
+      - nload
+      - less
+      - wget
+      - net-tools
+      - lynx
+      - git
+      - dos2unix
+      - unzip
+  become: true

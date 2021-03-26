@@ -1,0 +1,11 @@
+require 'yaml'
+Dir[File.join(__dir__, 'lib', 'loader','*.rb')].each { |file| require file }
+
+config_filename = __dir__+'/config.yaml'
+if File.file?(config_filename)
+    $project_config = YAML.safe_load(File.read(config_filename))
+    $default_box= $project_config['default_box']? $project_config['default_box']: "bento/centos-7"
+    Dir[File.join(__dir__, 'provision', $project_config['provisioner']? $project_config['provisioner']:'salt','*.rb')].each { |file| require file }
+else
+    puts "\n\n\n!!! config.yaml is missing. Please set it before start\n\n\n"
+end
