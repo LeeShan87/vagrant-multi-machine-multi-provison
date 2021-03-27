@@ -1,3 +1,5 @@
+# Example how can you include config.yaml in your provision scripts
+# Ansible vault is better approach. https://docs.ansible.com/ansible/latest/user_guide/vault.html
 - name: Load config.yml.
   include_vars:
     file: /vagrant/config.yaml
@@ -10,7 +12,9 @@
 
 - name: Add user "{{ config.ssh_user }}" to sudo
   lineinfile:
-    path: /etc/sudoers.d/{{ config.ssh_user }}
+    # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html#parameter-path
+    # path: "/etc/sudoers.d/vagrant"
+    dest: "/etc/sudoers.d/{{ config.ssh_user }}"
     line: '{{ config.ssh_user }} ALL=(ALL) NOPASSWD: ALL'
     state: present
     mode: 0440

@@ -23,3 +23,17 @@ In this project I tried to achieve how we can convert our development setup (whi
 Copy src folder and do you magic :)
 
 More information can be found in the [src](./src/Readme.md)
+
+# Provisioners
+
+For now I only focus on VM self provisioning. Like:
+
+- SaltStack masterless [https://www.vagrantup.com/docs/provisioning/salt#masterless-quickstart](https://www.vagrantup.com/docs/provisioning/salt#masterless-quickstart)
+- Ansible local: [https://www.vagrantup.com/docs/provisioning/ansible_local](https://www.vagrantup.com/docs/provisioning/ansible_local)
+- Chef-solo [https://www.vagrantup.com/docs/provisioning/chef_solo](https://www.vagrantup.com/docs/provisioning/chef_solo)
+
+Maybe latter I will have time to create master minion like provision configuration as an example.
+
+# Examples
+
+Currently under development how should the examples look like.

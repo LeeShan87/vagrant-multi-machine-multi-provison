@@ -5,6 +5,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # Define some global VirtualBox configuration to use
   config.vm.provider "virtualbox" do |vb|
       vb.memory = 2048
    		vb.gui = true

@@ -1,10 +1,15 @@
+# Require yaml to be able load config.yaml settings
+# Require the Simple config loader which help us to load separeted Vagrant configuration files
 require 'yaml'
 Dir[File.join(__dir__, 'lib', 'loader','*.rb')].each { |file| require file }
 
 config_filename = __dir__+'/config.yaml'
 if File.file?(config_filename)
+    # Load the project setting to a Ruby global variable wich can be accessed latter
     $project_config = YAML.safe_load(File.read(config_filename))
+    # Make some config validation
     $default_box= $project_config['default_box']? $project_config['default_box']: "bento/centos-7"
+    # Load the provisioner's configuration Vagrant file. If not set salt will be used.
     Dir[File.join(__dir__, 'provision', $project_config['provisioner']? $project_config['provisioner']:'salt','*.rb')].each { |file| require file }
 else
     puts "\n\n\n!!! config.yaml is missing. Please set it before start\n\n\n"

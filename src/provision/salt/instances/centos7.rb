@@ -7,6 +7,7 @@ def init(config)
          salt.install_type = "stable"
          salt.run_highstate = true
          salt.masterless = true
+         # salt.verbose = true
          salt.colorize = true
          salt.bootstrap_options = "-P -c /tmp"
       end
